@@ -9,6 +9,6 @@ path=f"mysql+pymysql://{username}:{password}@localhost/{database}"
 
 engine=create_engine(path)
 
-Session=sessionmaker(bind=engine)
+SessionLocal = sessionmaker(bind=engine)
 
-session=Session()
+session=SessionLocal()
