@@ -1,5 +1,5 @@
 from sqlalchemy import Integer, Column, Float, Boolean, String 
-from sqlalchemy.orm import declarative_base, sessionmaker
+from sqlalchemy.orm import declarative_base
 
 Base = declarative_base()
 
@@ -10,7 +10,7 @@ class Users(Base):
     password = Column(String(200), nullable=False)
     firstname = Column(String(100), nullable=False)
     secondname= Column(String(200), nullable=False)
-    email = Column(String(100), nullable=False)
+    email = Column(String(100), nullable=False ,unique=True)
 
     def __init__(self, username, password , firstname, secondname, email):
         self.username = username

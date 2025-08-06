@@ -3,6 +3,12 @@
 {% block content %}
 <a href="{{url_for('register')}}">Register if you do not have an account</a>
 <form  method="post">
+    {% if error %}
+        <div style="color: red; font-weight: bold;">{{ error }}</div>
+    {% endif %}
+    {% if not error %}
+        <div style="color: green; font-weight: bold;">{{ success }}</div>
+    {% endif %}
     <label for="username">Username</label>
     <input type="text" name="username" placeholder="enter username">
      <label for="password">Password</label>

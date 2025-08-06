@@ -12,6 +12,7 @@ def home():
 @app.route('/register', methods=['GET', 'POST'])
 def register():
     error = None
+    success= None
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
@@ -31,7 +32,9 @@ def register():
                     new_user = Users(username=username, password=password ,firstname=firstname,secondname=secondname,email=email)
                     db.add(new_user)
                     db.commit()
+                    success="Registration Sucessfull"
                     return redirect(url_for('login'))
+                   
             finally:
                 db.close()
     return render_template('register.html', error=error)
@@ -39,12 +42,13 @@ def register():
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     error = None
+    success= None
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
 
         if not username or not password:
-            error = "Invalid credentials"
+            error = "Fill all fields"
         else:
             db = SessionLocal()
             try:
@@ -52,9 +56,11 @@ def login():
                 if user:
                     session['username'] = user.username
                     session['user_id'] = user.id
+                    success ="Login Sucessfull"
                     return redirect(url_for('dashboard'))
+                    
                 else:
-                    error = "Invalid input"
+                    error = "Invalid input."
             finally:
                 db.close()
     return render_template('login.html', error=error)
