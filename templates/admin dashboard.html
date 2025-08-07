@@ -2,6 +2,18 @@
 {% block title %} Dashboard {% endblock %}
 {% block content %}
 
+<form  method="post">
+    <label for="product">Product</label>
+    <input type="text" name="product" placeholder="enter product">
+     <label for="price">Price per piece</label>
+    <input type="price" name="price" placeholder="enter price">
+    <label for="stock">Instock</label>
+    <input type="checkbox" name="stock">
+    <label for="quantity">Quantiy</label>
+    <input type="quantity" name="quantity" placeholder="enter quantity">
+    <button type="submit">Add</button>
+</form>
+
 <table border="1">
     <thead>
         <tr>
@@ -26,14 +38,5 @@
     {% endfor %}
     </tbody>
 </table>
-<style>
-    *{
-        margin: 0;
-        padding: 0;
-    }
-    body{
-        background-color: azure;
-    }
-</style>
 
 {% endblock %}

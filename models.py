@@ -19,15 +19,33 @@ class Users(Base):
         self.secondname = secondname
         self.email = email
 
+class Admins(Base):
+    __tablename__ = 'admins'
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    username = Column(String(100), nullable=False, unique=True)
+    password = Column(String(200), nullable=False)
+    firstname = Column(String(100), nullable=False)
+    secondname= Column(String(200), nullable=False)
+    email = Column(String(100), nullable=False ,unique=True)
+
+    def __init__(self, username, password , firstname, secondname, email):
+        self.username = username
+        self.password = password
+        self.firstname = firstname
+        self.secondname = secondname
+        self.email = email
+
 class Products(Base):
     __tablename__ = 'products'
     id = Column(Integer, primary_key=True, autoincrement=True)
     product = Column(String(100), nullable=False)
     price = Column(Float, nullable=False)
     stock = Column(Boolean, nullable=False)
+    quantity = Column(Integer,nullable=True)
 
-    def __init__(self, product, price, stock):
+    def __init__(self, product, price, stock,quantity):
         self.product = product
         self.price = price
         self.stock = stock
+        self.quantity =quantity
 

@@ -1,18 +1,20 @@
 {% extends 'base.html' %}
 {% block title %} Dashboard {% endblock %}
 {% block content %}
-<a href="{{url_for('register')}}">Register if you do not have an account</a>
+<a href="{{url_for('register')}}">Register if you do not have an account</a><br>
+<a href="{{url_for('adminLogin')}}">Login if you are an admin</a>
+
 <form  method="post">
     {% if error %}
         <div style="color: red; font-weight: bold;">{{ error }}</div>
     {% endif %}
-    {% if not error %}
+    {% if success %}
         <div style="color: green; font-weight: bold;">{{ success }}</div>
     {% endif %}
     <label for="username">Username</label>
     <input type="text" name="username" placeholder="enter username">
      <label for="password">Password</label>
-    <input type="text" name="password" placeholder="enter password">
+    <input type="password" name="password" placeholder="enter password">
     <button type="submit">Login</button>
 </form>
 
