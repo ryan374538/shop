@@ -96,7 +96,7 @@ def  adminLogin():
 def dashboard():
     if 'username' not in session:
         return redirect(url_for('login'))
-        
+
     db = SessionLocal()
 
     products = db.query(Products).all()
@@ -110,7 +110,7 @@ def adminDashboard():
     db = SessionLocal()    
 
     products = db.query(Products).all()
-    return render_template('dashboard.html',products=products)
+    return render_template('admin dashboard.html',products=products)
 
     error = None
     success= None
