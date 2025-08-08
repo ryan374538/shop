@@ -1,21 +1,73 @@
 {% extends 'base.html' %}
 {% block title %} Dashboard {% endblock %}
 {% block content %}
-<a href="{{url_for('register')}}">Register if you do not have an account</a><br>
-<a href="{{url_for('adminLogin')}}">Login if you are an admin</a>
 
+<style>
+    *{
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+    body{
+        background-size: cover;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        padding: 30px;
+        background-color: rgba(211, 178, 243, 0.137);
+    }
+    
+    form{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 30px;
+        background-color: hsla(0, 0%, 100%, 0.548);
+        width: 100%;
+        max-width: 400px;
+        aspect-ratio: 3/1;
+        border-radius: 30px;
+        box-shadow: 0px 15px 20px black;
+        text-align: center;
+    }
+    .box{
+        width: 100%;
+        max-width: 400px;
+        aspect-ratio: 10/1;
+        border-radius: 20px;
+        background-color: rgba(124, 90, 248, 0.178);
+        padding: 20px;
+        border: none;
+    }
+    button{
+        padding: 13px 50px;
+        background-color: rgb(64, 3, 121);
+        border-radius: 20px;
+        color: white;
+        border: none;
+    }
+         button:hover {
+    box-shadow: 0px 5px 10px black;
+    transform: translateY(-3px);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+</style>
 <form  method="post">
+    <h1>Login to your account</h1><br>
     {% if error %}
         <div style="color: red; font-weight: bold;">{{ error }}</div>
-    {% endif %}
-    {% if success %}
-        <div style="color: green; font-weight: bold;">{{ success }}</div>
-    {% endif %}
+    {% endif %} <br>
     <label for="username">Username</label>
-    <input type="text" name="username" placeholder="enter username">
+    <input type="text" name="username" placeholder="enter username" class="box"><br>
      <label for="password">Password</label>
-    <input type="password" name="password" placeholder="enter password">
-    <button type="submit">Login</button>
+    <input type="password" name="password" placeholder="enter password" class="box"><br>
+    <button type="submit">Login</button><br>
+    <a href="{{url_for('register')}}">Register if you do not have an account</a>
+<a href="{{url_for('adminLogin')}}">Login if you are an admin</a>
 </form>
 
 {% endblock %}
