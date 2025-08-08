@@ -1,51 +1,50 @@
-{% extends 'base.html' %}
-{% block title %} Dashboard {% endblock %}
-{% block content %}
+{% extends 'base.html' %} {% block title %} Dashboard {% endblock %} {% block
+content %}
 
 <table border="1">
-    <thead>
-        <tr>
-            <th>Product</th>
-            <th>Quantity</th>
-            <th>Price</th>
-            <th>In stock</th>
-        </tr>
-    </thead>
-    <tbody>
+  <thead>
+    <tr>
+      <th>Product</th>
+      <th>Quantity</th>
+      <th>Price</th>
+      <th>In stock</th>
+    </tr>
+  </thead>
+  <tbody>
     {% for product in products %}
-        <tr>
-            <td>{{ product.product }}</td>
-            <td>{{ product.quantity }}</td>
-            <td>{{ product.price }}</td>
-            <td>{{ product.stock}}</td>
+    <tr>
+      <td>{{ product.product }}</td>
+      <td>{{ product.quantity }}</td>
+      <td>{{ product.price }}</td>
+      <td>{{ product.stock}}</td>
 
-            <td>
-                <a href="{{ url_for('edit_or_delete', product_id=product.id) }}">Edit/Delete</a>
-            </td>
-        </tr>
+      <td>
+        <a href="{{ url_for('edit_or_delete', product_id=product.id) }}"
+          >Edit/Delete</a
+        >
+      </td>
+    </tr>
     {% endfor %}
-    </tbody>
+  </tbody>
 </table>
 <style>
-    *{
-        margin: 0;
-        padding: 0;
-    }
-    body{
-           
-        background-size: cover;
-        height: 100vh;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-wrap: wrap;
-        padding: 30px;
-        background-color: rgba(211, 178, 243, 0.137);
-    
-    }
-    table{
-        width: 100%;
-    }
+  * {
+    margin: 0;
+    padding: 0;
+  }
+  body {
+    background-size: cover;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 30px;
+    background-color: rgba(167, 108, 227, 0.436);
+  }
+  table {
+    width: 100%;
+  }
 </style>
 
 {% endblock %}

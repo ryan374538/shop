@@ -1,103 +1,120 @@
-{% extends 'base.html' %}
-{% block title %} Dashboard {% endblock %}
-{% block content %}
-
+{% extends 'base.html' %} {% block title %} Dashboard {% endblock %} {% block
+content %}
 
 <style>
-    *{
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
-    }
-    body{
-        background-size: cover;
-        height: 100vh;
-        padding: 30px;
-        background-color: rgba(211, 178, 243, 0.137);
-    }
-    
-    form{
-        margin: auto;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        padding: 30px;
-        background-color: hsla(0, 0%, 100%, 0.548);
-        width: 100%;
-        max-width: 400px;
-        aspect-ratio: 3/1;
-        border-radius: 30px;
-        box-shadow: 0px 15px 20px black;
-        text-align: center;
-    }
-    .box{
-        width: 100%;
-        max-width: 400px;
-        aspect-ratio: 10/1;
-        border-radius: 20px;
-        background-color: rgba(124, 90, 248, 0.178);
-        padding: 20px;
-        border: none;
-    }
-    button{
-        padding: 13px 50px;
-        background-color: rgb(64, 3, 121);
-        border-radius: 20px;
-        color: white;
-        border: none;
-    }
-    table{
-        margin: auto;
-        margin-top: 100px;
-        width: 100%;
-    }
-         button:hover {
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  body {
+    background-size: cover;
+    height: 100vh;
+    padding: 30px;
+    background-color: rgba(167, 108, 227, 0.436);
+  }
+
+  form {
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+    background-color: hsla(0, 0%, 100%, 0.548);
+    width: 100%;
+    max-width: 400px;
+    aspect-ratio: 3/1;
+    border-radius: 30px;
+    box-shadow: 0px 15px 20px black;
+    text-align: center;
+  }
+  .box {
+    width: 100%;
+    max-width: 400px;
+    aspect-ratio: 10/1;
+    border-radius: 20px;
+    background-color: rgba(124, 90, 248, 0.178);
+    padding: 20px;
+    border: none;
+  }
+  button {
+    padding: 13px 50px;
+    background-color: rgb(64, 3, 121);
+    border-radius: 20px;
+    color: white;
+    border: none;
+  }
+  table {
+    margin: auto;
+    margin-top: 100px;
+    width: 100%;
+  }
+  button:hover {
     box-shadow: 0px 5px 10px black;
     transform: translateY(-3px);
     transition: all 0.3s ease;
     cursor: pointer;
-}
+  }
 </style>
-<form  method="post">
-    <h2>Add products</h2><br>
-      {% if error %}
-        <div style="color: red; font-weight: bold;">{{ error }}</div>
-    {% endif %} <br>
-    <label for="product">Product</label>
-    <input type="text" name="product" placeholder="enter product" class="box"><br>
-     <label for="price">Price per piece</label>
-    <input type="price" name="price" placeholder="enter price"class="box"><br>
-    <label for="quantity">Quantiy</label>
-    <input type="quantity" name="quantity" placeholder="enter quantity" class="box"><br>
-    <label for="stock">Instock <input type="checkbox" name="stock"></label><br>
-    
-    <button type="submit">Add</button>
+<form method="post">
+  <h2>Add products</h2>
+  <br />
+  {% if error %}
+  <div style="color: red; font-weight: bold">{{ error }}</div>
+  {% endif %} <br />
+  <label for="product">Product</label>
+  <input
+    type="text"
+    name="product"
+    placeholder="enter product"
+    class="box"
+  /><br />
+  <label for="price">Price per piece</label>
+  <input
+    type="price"
+    name="price"
+    placeholder="enter price"
+    class="box"
+  /><br />
+  <label for="quantity">Quantiy</label>
+  <input
+    type="quantity"
+    name="quantity"
+    placeholder="enter quantity"
+    class="box"
+  /><br />
+  <label for="stock">Instock <input type="checkbox" name="stock" /></label
+  ><br />
+
+  <button type="submit">Add</button>
 </form>
 
 <table border="1">
-    <thead>
-        <tr>
-            <th>Product</th>
-            <th>Quantity</th>
-            <th>Price</th>
-            <th>In stock</th>
-        </tr>
-    </thead>
-    <tbody>
+  <thead>
+    <tr>
+      <th>Product</th>
+      <th>Quantity</th>
+      <th>Price</th>
+      <th>In stock</th>
+    </tr>
+  </thead>
+  <tbody>
     {% for product in products %}
-        <tr>
-            <td>{{ product.product }}</td>
-            <td>{{ product.quantity }}</td>
-            <td>{{ product.price }}</td>
-            <td>{{ product.stock}}</td>
+    <tr>
+      <td>{{ product.product }}</td>
+      <td>{{ product.quantity }}</td>
+      <td>{{ product.price }}</td>
+      <td>{{ product.stock}}</td>
 
-            <td>
-                <a href="{{ url_for('edit_or_delete', product_id=product.id) }}">Edit/Delete</a>
-            </td>
-        </tr>
+      <td>
+        <a href="{{ url_for('edit_or_delete', product_id=product.id) }}"
+          >Edit/Delete</a
+        >
+      </td>
+    </tr>
     {% endfor %}
-    </tbody>
+  </tbody>
 </table>
 
 {% endblock %}
