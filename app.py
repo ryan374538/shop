@@ -1,5 +1,5 @@
 from flask import Flask, render_template, redirect, request, url_for, session
-from models import Users ,Admins ,Products
+from models import Users ,Products
 from connection import SessionLocal
 
 app = Flask(__name__)

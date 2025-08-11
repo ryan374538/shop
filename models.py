@@ -18,7 +18,7 @@ class Users(Base):
         self.firstname = firstname
         self.secondname = secondname
         self.email = email
-
+"""
 class Admins(Base):
     __tablename__ = 'admins'
     id = Column(Integer, primary_key=True, autoincrement=True)
@@ -34,6 +34,8 @@ class Admins(Base):
         self.firstname = firstname
         self.secondname = secondname
         self.email = email
+
+"""        
 
 class Products(Base):
     __tablename__ = 'products'
