@@ -66,32 +66,6 @@ def login():
     return render_template('login.html', error=error)
 
 
-@app.route('/admin login', methods=['GET', 'POST'])
-def  adminLogin():
-    error = None
-    success= None
-    if request.method == 'POST':
-        username = request.form['username']
-        password = request.form['password']
-
-        if not username or not password:
-            error = "Fill all fields"
-        else:
-            db = SessionLocal()
-            try:
-                user = db.query(Admins).filter_by(username=username, password=password).first()
-                if user:
-                    session['username'] = user.username
-                    session['user_id'] = user.id
-                    success ="Login Sucessfull"
-                    return redirect(url_for('adminDashboard'))
-                    
-                else:
-                    error = "Invalid input."
-            finally:
-                db.close()
-    return render_template('admin login.html', error=error)    
-
 @app.route('/dashboard')
 def dashboard():
     if 'username' not in session:

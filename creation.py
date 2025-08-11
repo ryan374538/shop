@@ -3,12 +3,10 @@ from models import Base
 from connection import engine
 Base.metadata.create_all(bind=engine)
 """
-from models import Base, Admins  
+from werkzeug.security import generate_password_hash
+from models import Admins
 from connection import engine
 from sqlalchemy.orm import sessionmaker
-from sqlalchemy import create_engine
-
-Base.metadata.create_all(bind=engine)
 
 Session = sessionmaker(bind=engine)
 session = Session()
@@ -16,9 +14,10 @@ session = Session()
 admin_exists = session.query(Admins).filter_by(username='admin').first()
 
 if not admin_exists:
+    hashed_password = generate_password_hash('2340')
     admin_user = Admins(
         username='admin',
-        password='2340',  
+        password=hashed_password,
         firstname='Admin',
         secondname='User',
         email='admin@example.com'
@@ -27,3 +26,4 @@ if not admin_exists:
     session.commit()
 
 session.close()
+
