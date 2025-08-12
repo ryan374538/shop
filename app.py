@@ -43,37 +43,26 @@ def register():
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
-    error = None
-    success= None
+    error = False
     if request.method == 'POST':
-        username = request.form['username']
-        password = request.form['password']
+        username = request.form.get('username')
+        password = request.form.get('password')
 
-        if not username or not password:
-            error = "Fill all fields"
-        else:
-            db = SessionLocal()
-            try:
-                user = db.query(Users).filter_by(username=username, password=password).first()
-                if user:
-                    session['username'] = user.username
-                    session['user_id'] = user.id
-                    success ="Login Sucessfull"
+        db = SessionLocal()
+        try:
+            user = db.query(Users).filter_by(username=username).first()
+            if user and user.password == password:
+                session['username'] = user.username
+                session['user_id'] = user.id
+                session['role'] = user.role
+                if user.role == 'student':
                     return redirect(url_for('dashboard'))
-                    
                 else:
-                    error = "Invalid input."
-
-                admin_user=session.query(Users).filter_by(username='admin').first()    
-
-                if admin_exists:
-                    return redirect(url_for('adminDashboard'))
-                else:
-                    return redirect(url_for('register'))
-                    admin_user = Users(username='admin', password='2340', firstname='admin',secondname='user',email='admin@gmail.com')     
-                      
-            finally:
-                db.close()
+                    return redirect(url_for('admin_dashboard'))
+            else:
+                error = True
+        finally:
+            db.close()
     return render_template('login.html', error=error)
 
 

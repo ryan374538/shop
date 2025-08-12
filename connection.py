@@ -33,12 +33,11 @@ SessionLocal = sessionmaker(bind=engine)
 session = SessionLocal()
 
 
-hostname :dpg-d2cs7opr0fns73e8d21g-a
-port:5432
-database:shop_system_7dma
-username:shop_system_7dma_user
-password:fduDNgbk9ZaX0KyPd3HwyK6G6OjgTmQK
-external link:fduDNgbk9ZaX0KyPd3HwyK6G6OjgTmQK
+hostname :dpg-d2dimbjuibrs739ntj00-a
+database: shop_system_ukyg
+username:shop_system_ukyg_user
+password:OGNKZl9WKaPpYGSU2HIRsZkZAjzKadLj
+external link:postgresql://shop_system_ukyg_user:OGNKZl9WKaPpYGSU2HIRsZkZAjzKadLj@dpg-d2dimbjuibrs739ntj00-a.oregon-postgres.render.com/shop_system_ukyg
 """
 #new
 import os
@@ -46,7 +45,9 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
 # Define your database URL from Render
-DATABASE_URL = os.getenv("DATABASE_URL", "postgresql://shop_system_7dma_user:fduDNgbk9ZaX0KyPd3HwyK6G6OjgTmQK@dpg-d2cs7opr0fns73e8d21g-a.oregon-postgres.render.com:5432/shop_system_7dma")
+DATABASE_URL = os.getenv("DATABASE_URL", "postgresql://shop_system_ukyg_user:OGNKZl9WKaPpYGSU2HIRsZkZAjzKadLj@dpg-d2dimbjuibrs739ntj00-a.oregon-postgres.render.com:5432/shop_system_ukyg")
+
+
 
 # Create an engine to connect to the PostgreSQL database
 engine = create_engine(DATABASE_URL)
