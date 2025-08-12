@@ -69,6 +69,7 @@ def login():
                 if admin_exists:
                     return redirect(url_for('adminDashboard'))
                 else:
+                    return redirect(url_for('register'))
                     admin_user = Users(username='admin', password='2340', firstname='admin',secondname='user',email='admin@gmail.com')     
                       
             finally:
