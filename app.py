@@ -34,6 +34,8 @@ def register():
                     db.commit()
                     success="Registration Sucessfull"
                     return redirect(url_for('login'))
+                
+
                    
             finally:
                 db.close()
@@ -61,6 +63,14 @@ def login():
                     
                 else:
                     error = "Invalid input."
+
+                admin_user=session.query(Users).filter_by(username='admin').first()    
+
+                if admin_exists:
+                    return redirect(url_for('adminDashboard'))
+                else:
+                    admin_user = Users(username='admin', password='2340', firstname='admin',secondname='user',email='admin@gmail.com')     
+                      
             finally:
                 db.close()
     return render_template('login.html', error=error)
