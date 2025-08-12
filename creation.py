@@ -3,27 +3,35 @@ from models import Base
 from connection import engine
 Base.metadata.create_all(bind=engine)
 """
-from werkzeug.security import generate_password_hash
-from models import Users
-from connection import engine
-from sqlalchemy.orm import sessionmaker
 
-Session = sessionmaker(bind=engine)
-session = Session()
 
-admin_exists = session.query(Users).filter_by(username='admin').first()
+import os
+from connection import engine, SessionLocal
+from models import Users ,Base
 
-if not admin_exists:
-    hashed_password = generate_password_hash('2340')
-    admin_user = Users(
-        username='admin',
-        password=hashed_password,
-        firstname='Admin',
-        secondname='User',
-        email='admin@example.com'
-    )
-    session.add(admin_user)
-    session.commit()
+# ✅ Create tables
+Base.metadata.create_all(bind=engine)
+print("✅ Tables created successfully!")
+print("Using DB file:", os.path.abspath("users"))
 
-session.close()
+# ✅ Add default admin user
+def add_admin_user():
+    db = SessionLocal()
+    try:
+        existing_user = db.query(Users).filter_by(username="admin").first()
+        if existing_user:
+            print("ℹ️ Admin user already exists.")
+        else:
+            admin = Users(
+                username="admin",
+                password="admin123",  # You can hash this later
+                role="admin"
+            )
+            db.add(admin)
+            db.commit()
+            print("✅ Admin user created! Username: admin | Password: admin123")
+    finally:
+        db.close()
 
+if __name__ == "__main__":
+    add_admin_user()

@@ -8,34 +8,14 @@ class Users(Base):
     id = Column(Integer, primary_key=True, autoincrement=True)
     username = Column(String(100), nullable=False, unique=True)
     password = Column(String(200), nullable=False)
-    firstname = Column(String(100), nullable=False)
-    secondname= Column(String(200), nullable=False)
-    email = Column(String(100), nullable=False ,unique=True)
+    role=Column(String(100))
+   
 
-    def __init__(self, username, password , firstname, secondname, email):
+    def __init__(self, username, password , role):
         self.username = username
         self.password = password
-        self.firstname = firstname
-        self.secondname = secondname
-        self.email = email
-"""
-class Admins(Base):
-    __tablename__ = 'admins'
-    id = Column(Integer, primary_key=True, autoincrement=True)
-    username = Column(String(100), nullable=False, unique=True)
-    password = Column(String(200), nullable=False)
-    firstname = Column(String(100), nullable=False)
-    secondname= Column(String(200), nullable=False)
-    email = Column(String(100), nullable=False ,unique=True)
-
-    def __init__(self, username, password , firstname, secondname, email):
-        self.username = username
-        self.password = password
-        self.firstname = firstname
-        self.secondname = secondname
-        self.email = email
-
-"""        
+        self.role =role 
+     
 
 class Products(Base):
     __tablename__ = 'products'

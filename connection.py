@@ -1,18 +1,21 @@
-#from sqlalchemy import create_engine
-#from sqlalchemy.orm import sessionmaker
-
-#username="root"
-#password="2480"
-#database="users"
-
-#path=f"mysql+pymysql://{username}:{password}@localhost/{database}"
-
-#engine=create_engine(path)
-
-#SessionLocal = sessionmaker(bind=engine)
-
-#session=SessionLocal()
 """
+from sqlalchemy import create_engine
+from sqlalchemy.orm import sessionmaker
+
+username="root"
+password="2480"
+database="users"
+
+path=f"mysql+pymysql://{username}:{password}@localhost/{database}"
+
+engine=create_engine(path)
+
+SessionLocal = sessionmaker(bind=engine)
+
+session=SessionLocal()
+
+
+
 import os
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
@@ -37,6 +40,7 @@ username:shop_system_7dma_user
 password:fduDNgbk9ZaX0KyPd3HwyK6G6OjgTmQK
 external link:fduDNgbk9ZaX0KyPd3HwyK6G6OjgTmQK
 """
+#new
 import os
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
