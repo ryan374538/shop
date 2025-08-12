@@ -16,9 +16,6 @@ def register():
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
-        firstname = request.form['firstname']
-        secondname = request.form['secondname']
-        email = request.form['email']
 
         if not username or not password:
             error = "All fields are required."
@@ -29,14 +26,11 @@ def register():
                 if existing_user:
                     error = "User already exists"
                 else:
-                    new_user = Users(username=username, password=password ,firstname=firstname,secondname=secondname,email=email)
+                    new_user = Users(username=username, password=password)
                     db.add(new_user)
                     db.commit()
                     success="Registration Sucessfull"
                     return redirect(url_for('login'))
-                
-
-                   
             finally:
                 db.close()
     return render_template('register.html', error=error )
