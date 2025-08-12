@@ -58,7 +58,7 @@ def login():
                 if user.role == 'student':
                     return redirect(url_for('dashboard'))
                 else:
-                    return redirect(url_for('admin_dashboard'))
+                    return redirect(url_for('adminDashboard'))
             else:
                 error = True
         finally:
